@@ -1,0 +1,30 @@
+server:
+  port: ${SERVER_PORT:8085}
+
+spring:
+  application:
+    name: rag-engine-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ragdb}
+    username: ${SPRING_DATASOURCE_USERNAME:raguser}
+    password: ${SPRING_DATASOURCE_PASSWORD:ragpass}
+
+ollama:
+  base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+  chat-model: ${OLLAMA_CHAT_MODEL:llama3}
+  embed-model: ${OLLAMA_EMBED_MODEL:nomic-embed-text}
+
+rag:
+  chunk:
+    sizeChars: 1200
+    overlapChars: 200
+  retrieval:
+    topK: 5
+  embedding:
+    dims: 768
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
